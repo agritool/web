@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ajax 간단 테스트</title>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script type="text/javascript" language="javascript">
+
+    $(document).ready(function(){
+
+
+        $.ajax({
+
+            type : "GET",
+            url : "http://222.111.157.63/test",
+            dataType : "text",
+            error : function(){
+                alert('통신실패!!');
+            },
+            success : function(data){
+                alert("통신데이터 값 : " + data) ;
+                $("#dataArea").html(data) ;
+            }
+
+        });
+
+
+    });
+
+</script>
+
+</head>
 <body>
 
-<div id="demo">
-<h2>The XMLHttpRequest Object</h2>
-<button type="button" onclick="loadDoc()">Change Content</button>
-</div>
-  
-<div id="change">
-  <h3>it will change to number!</h3> 
-</div>
-
-<script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("change").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "222.111.157.63/test/", true);
-  xhttp.send();
-}
-</script>
+    <div id="dataArea"></div>
 
 </body>
 </html>
